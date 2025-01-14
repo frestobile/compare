@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>Routes</title>
+  <meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no' />
+<!--  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'">-->
+  <style>
+body {
+    margin: 0; padding: 0;
+    /*overscroll-behavior: none;*/
+    overflow: hidden;
+    height: 100%;
+}
+      #map {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 100%;
+          transform: translateZ(0);
+          will-change: transform;
+      }
+.marker {
+  background-size: cover;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.flex-container {
+        text-align: center;
+        background-color: rgba(255,255,255,0.9);
+        width: 100%;
+        font-family: arial;
+        position: absolute;
+        padding: 20px;
+        z-index: 99999;
+        margin-left: -20px;
+        padding-top:70px;
+        border-bottom-left-radius:55px;
+        border-bottom-right-radius:55px;
+}
+
+input {
+    text-align: center;
+}
+  
+  .map-style {
+      border-radius:6px;
+      padding:5px;
+      }
+      .map-style:hover {
+          cursor: pointer;
+      }
+     
+      .beacon2 {
+          margin-top: 88vh;
+          text-align:center;
+          background-color: white;
+          border-radius: 50px;
+          padding: 10px;
+          position: fixed;
+          z-index: 9999999;
+          margin-left: 132px;
+          border: 1px solid #ed5f1e;
+          }
+      
+      .mapboxgl-ctrl-top-right { display:none;}
+</style>
+  <!-- Favicons Icon -->
+  <link rel="shortcut icon" type="image/x-icon" href="./assets/images/icon.png" />
+<script src="./map/turf.min.js"></script>
+  <link href="./map/mapbox-gl.css" rel="stylesheet">
+<script src="./map/mapbox-gl.js"></script>
+<script src="./assets/js/jquery.min.js"></script>
+<body>
+    <div class="flex-container"><strong style="font-size:20px"><img src="./assets/images/wifi-off.svg" style="height:20px"> Offline mode enabled</strong><br>
+       <p style="margin-top:10px"> <a href="#" id="retry" style="color:#ed5f1e;font-size:18px"> Tap here try reconnect</a></p>
+    </div>
+    
+    <div id="beacon2" class=" beacon2">
+        &nbsp;&nbsp;<img src='./assets/images/location-arrow-light.svg' class="map_btn" style='height:20px;'>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img src='./assets/images/play-light.svg' class="beacon3" style='height:22px;width:22px;margin-top:5px'>
+            &nbsp;&nbsp;
+    </div>
+    
+    
+<div id="map"></div>
+
+
+<script>
+
+    let routes = null;
+    let counts = 0;
+    let routeID = 1;
+    let token = "";
+
+    
+    // Get the current URL
+    const urlParams = new URLSearchParams(window.location.search);
+    routeID = urlParams.get('route');
+    token = urlParams.get('token');
+    let url_link = "https://app.local-tourist.co.uk/new/beta-route-start.php?Token="+token+"&RouteID="+ routeID;
+    var link = document.getElementById("retry");
+    link.href = url_link;
+    mapboxgl.accessToken = 'pk.eyJ1Ijoidm9nYWx1ayIsImEiOiJjbHppYngzYTEwZjZxMmpxeHJibjVvb2FuIn0.En95YkuHRLEcEpA2_c3F1g';
+
+   fetch('./routes/'+routeID+'.json')
+     .then(response => response.json())
+     .then(data => {
+        routes = data;
+        counts = data.length;
+        let routhLength = 1;
+        if (counts.length < 50) {
+            routhLength = routes.length;
+        } else {
+            routhLength = 50;
+        }
+        
+        let targetRoute = [];
+        routes.forEach(point => {
+            targetRoute.push([point['lon'], point['lat']]);
+        });
+        
+        const initBearing = calculateBearing(routes[0], routes[routhLength]);
+        const map = new mapboxgl.Map({
+            container: 'map',
+            center: [routes[0]['lon'], routes[0]['lat']],
+            zoom:13,
+            pitch: 38,
+            interactive: true,
+        });
+        
+        map.on('load', () => {
+            map.addSource('offline-tiles', {
+                'type': 'raster',
+                'tiles': [
+                    'http://localhost:9000/local-www/tiles/{z}/{x}/{y}.png'
+                ],
+                'tileSize': 512,
+                'buffer': 128
+            });
+
+            map.addLayer({
+                'id': 'offline-tiles-layer',
+                'type': 'raster',
+                'source': 'offline-tiles'
+            });
+            map.addSource('route', {
+                type: 'geojson',
+                lineMetrics: true,
+                data: {
+                    'type' : 'FeatureCollection',
+                    'features': [{
+                        'geometry': {
+                            'type': 'LineString',
+                            'coordinates': targetRoute
+                        },
+                        'properties': {},
+                        'type': 'Feature'
+                    }]
+                }
+            });
+
+            map.addLayer({
+                id: 'route',
+                type: 'line',
+                source: 'route',
+                paint: {
+                    'line-color': 'rgba(236,94,30,0.9)',
+                    'line-width': 5
+                },
+                layout: {
+                    'line-cap': 'round',
+                    'line-join': 'round'
+                }
+            });
+
+            map.loadImage(
+                './assets/images/arrowhead.png',
+                function (error, image) {
+                    if (error) throw error;
+                    map.addImage('arrow', image);
+
+                    // Add a symbol layer with arrows along the route
+                    map.addLayer({
+                        'id': 'route-arrows',
+                        'type': 'symbol',
+                        'source': 'route',
+                        'layout': {
+                            'symbol-placement': 'line',
+                            'symbol-spacing': 80,
+                            'icon-image': 'arrow',
+                            'icon-size': 0.2,
+                            'icon-rotate': 90,
+                            'icon-rotation-alignment': 'map',
+                        }
+                    });
+                });
+            alert("offline map loaded");
+        });
+        map.setPitch(38);
+        map.addControl(new mapboxgl.NavigationControl());
+        // Add geolocate control to the map.
+        map.addControl(
+            new mapboxgl.GeolocateControl({
+                positionOptions: {
+                    enableHighAccuracy: true
+                },
+                // When active the map will receive updates to the device's location as it changes.
+                trackUserLocation: true,
+                // Draw an arrow next to the location dot to indicate which direction the device is heading.
+                showUserHeading: true
+            })
+        );
+
+       
+        map.setMinZoom(1);
+        map.setMaxZoom(14);
+
+        var el = document.createElement('div');
+            el.className = 'marker';
+            el.style.backgroundImage = 'url(./assets/images/arrowhead.png)';
+            el.style.width = '15px';
+            el.style.height = '15px';
+        
+        const popup = new mapboxgl.Popup({ closeButton: false, offset: 10 });
+        const marker = new mapboxgl.Marker(el).setLngLat(targetRoute[0])
+            .setPopup(popup)
+            .addTo(map)
+            .togglePopup();
+
+        function calculateBearing(start, end) {
+            const startLat = start['lat'] * Math.PI / 180;
+            const startLng = start['lon'] * Math.PI / 180;
+            const endLat = end['lat'] * Math.PI / 180;
+            const endLng = end['lon'] * Math.PI / 180;
+            
+
+            const y = Math.sin(endLng - startLng) * Math.cos(endLat);
+            const x = Math.cos(startLat) * Math.sin(endLat) - Math.sin(startLat) * Math.cos(endLat) * Math.cos(endLng - startLng);
+            const bearing = Math.atan2(y, x) * 180 / Math.PI;
+
+            return (bearing + 360) % 360; // Normalize to 0-360
+        }
+        
+        $('.map_btn').click(function(e)
+        {
+            $('.mapboxgl-ctrl-geolocate').click();
+        });
+                            
+        $('.beacon3').click(function(e) {
+            // Fly to a random location
+            map.flyTo({
+                center: [routes[0]['lon'], routes[0]['lat']],
+                duration: 5000,
+                zoom:13,
+                pitch:38,
+                essential: true // this animation is considered essential with respect to prefers-reduced-motion
+            });
+        });
+        //map.fitBounds([[-3.907471,53.90063],[-2.159588,55.18863]]);
+
+     })
+     .catch(error => alert('Erro Occured'));
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, minimal-ui, viewport-fit=cover">
+	<meta name="theme-color" content="#2196f3">
+	<meta name="format-detection" content="telephone=no">
+
+    <!-- jquery -->
+    <script language="JavaScript" type="text/javascript" src="jquery-3.7.1.min.js"></script>
+
+    <!-- Title -->
+	<title>Routes</title>
+	
+	<!-- PWA Version -->
+	<link rel="manifest" href="manifest.json">
+    
+    <!-- Stylesheets -->
+	<link rel="stylesheet" href="jquery.bootstrap-touchspin.min.css">
+    <link rel="stylesheet" href="swiper-bundle.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+ 
+</head>   
+<body class="bg-white">
+<div class="page-wraper"> 
+    
+   
+        
+	
+    
+    
+    
+    
+    
+     </div>
+
+  
+    
+    
+    <header class="header transparent" style="">
+        <style>
+            .demo-wrap {
+                overflow: hidden;
+                position: relative;
+                height:30vh;
+            }
+
+            .demo-bg {
+               /* background-color: rgba(0,0,0, 0.5);*/
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height:30vh;
+                padding: 25px;
+                padding-top:88px;
+            }
+
+            .demo-content {
+                position: relative;
+            }
+
+        </style>
+    
+        
+          
+                 
+        
+    <div class="demo-wrap" style="background-image:url(WalkingRoutes.png);background-size:cover;background-repeat: no-repeat;background-position:center" >
+                                        
+        
+            <div class="demo-bg" >
+                
+                <div class="demo-content">
+<div onclick="history.back()" style="background-color: white;margin-top:-30px;
+    border-radius: 20px;
+    text-align: center;
+    width: 39px;
+    height: 39px;
+    padding: 10px;
+    padding-top: 8px;
+    z-index: 9999999;">
+                    <i class='fa fa-chevron-left' ></i>
+             </div> 
+                    
+                    
+                                      
+                </div>
+            </div>
+        </div></header>
+    <!-- Header End -->
+
+    <style>
+
+        .rate {
+            float: left;
+            height: 46px;
+            padding: 0 10px;
+        }
+        .rate:not(:checked) > input {
+            position:absolute;
+            top:-9999px;
+        }
+        .rate:not(:checked) > label {
+            float:right;
+            width:1em;
+            overflow:hidden;
+            white-space:nowrap;
+            cursor:pointer;
+            font-size:30px;
+            margin-left:0px;
+            margin-right:2px;
+            text-align:center;
+            color:#ccc;
+        }
+        .rate:not(:checked) > label:before {
+            content: '★ ';
+        }
+        .rate > input:checked ~ label {
+            color: #ffc700;
+        }
+        .rate:not(:checked) > label:hover,
+        .rate:not(:checked) > label:hover ~ label {
+            color: #deb217;
+        }
+        .rate > input:checked + label:hover,
+        .rate > input:checked + label:hover ~ label,
+        .rate > input:checked ~ label:hover,
+        .rate > input:checked ~ label:hover ~ label,
+        .rate > label:hover ~ input:checked ~ label {
+            color: #c59b08;
+        }
+
+        /* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
+.rating-box {
+  position:relative;
+  vertical-align: middle;
+  font-size: 3em;
+  font-family: FontAwesome;
+  display:inline-block;
+  color: #F68127;
+}
+.rating-box:before{
+    content: "\f006 \f006 \f006 \f006 \f006";
+  }
+.rating-box .rating {
+    position: absolute;
+    left:0;
+    top:0;
+    white-space:nowrap;
+    overflow:hidden;
+    color: #F68127;
+  }
+  .rating-box .rating:before {
+      content: "\f005 \f005 \f005 \f005 \f005";
+    } </style>
+
+    
+    
+    
+    
+    
+    
+    <script>
+function ShowNonSat() {
+$("#nonSat").hide();
+$("#sat").show();
+}  
+    
+function ShowSat() {
+$("#nonSat").show();
+$("#sat").hide();
+}  
+    </script>
+    
+    
+   <style>
+    primary:focus, .btn-primary:hover {
+    border-color: #ed5f1e;
+    background-color: #ed5f1e;
+}
+    .btn-primary:hover {
+    background-color: #ed5f1e;
+    border-color: #ed5f1e;
+}
+   .btn-primary:focus {
+     background-color: #ed5f1e;
+    border-color: #ed5f1e;
+}    
+    </style> 
+    
+    
+    
+
+
+<script>
+    
+function GetURLParameter(sParam)
+{
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++) 
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam) 
+        {
+            return sParameterName[1];
+        }
+    }
+}
+    
+var ID = GetURLParameter('ID');
+
+    
+    function redirect()
+    {
+    var url = 'https://app.local-tourist.co.uk/new/beta-route-start.php?Token=g0HeFoSMOUyHR5nphUv0fzbGqq3XADde&RouteID='+ ID;
+   window.location.href = url;
+    }
+    
+
+$(document).ready(function () {
+    console.log(ID);
+    $.ajax({
+        url : './all_routes/' +ID +'.json',
+
+        success: function (data) {
+          console.log(data);
+            $('#routeName').html(data.name);
+            $('#difficulty').html(data.difficulty);
+            $('#routeType').html(data.routeType);
+            $('#distance').html(data.distance);
+            $('#distance1').html(data.distance);
+            $('#description').html(data.description);
+            $('#short_description').html(data.short_description);
+        }
+    });
+})
+ 
+    
+</script>
+
+    <!-- Page Content -->
+    <div class="page-content">
+        <div class="content-body fb">
+            <br><br><br><br><br><br><br><br><br><br>
+            
+              <div class="container rounded-content">
+            
+             <div class="container" >
+                      <h3 id='routeName' style="margin-left:0px;margin-top:0px;margin-bottom:4px"></h3>
+                 <small><span id='distance'></span>km  <span style='color:#ec5e1e'>&nbsp; • &nbsp;</span>  <span id='difficulty'></span>  <span style='color:#ec5e1e'>&nbsp; • &nbsp;</span> <span id='routeType'></span></small>
+              </div>
+            
+           
+              
+               </div>
+
+
+
+                 
+  
+                  
+        
+            
+                 <div class="container">
+                   <!--  <div class='row'>
+                     
+                     <div class='col-6' style='margin-bottom:16px'><h5 style='margin:0px'>
+                         <i class="fa-regular fa-shoe-prints"></i> <span id='distance1'></span>km</h5>
+                         <p style='margin:0px'>Route Length</p></div>
+                         
+                     <div class='col-6' style='margin-bottom:16px'><h5 style='margin:0px'><i class="fa-regular fa-mountains"></i> 337m</h5>
+                         <p style='margin:0px'>Elevation Gain</p></div>
+                         
+                         
+                         <div class='col-6' style='margin-bottom:16px'><h5 style='margin:0px'>
+                         <i class="fa-regular fa-clock"></i> &nbsp; - </h5>
+                         <p style='margin:0px'>Average Time </p></div>
+                         
+                         
+                             
+    
+                     <div class='col-6' style='margin-bottom:16px'><h5 style='margin:0px'><i class="fa-regular fa-arrows-rotate fa-lg"></i> </h5>
+                         <p style='margin:0px'>Circular Route</p></div>
+                     
+                     </div> -->
+                     
+                  
+                   
+                <style>p { font-size:16px}</style>
+           
+                    <p style=';font-size:20px;font-weight:bold;color:#ed5f1e'>Route Details</p>
+                    <style>p { font-size:16px}</style>
+            <p style=" !important;margin-top:0px;font-size:16px"><p id='description'></p>
+
+                   
+                   
+
+                <br>
+               
+
+                <div class='row'>
+                   <p style=';font-size:20px;font-weight:bold;margin:0px;color:#ed5f1e'>Comments</p>
+<a id='Comments'></a>
+
+                   
+                 
+                    <i>No comments yet</i><br><br>
+
+                   
+
+
+                 </div>
+
+
+            </div>
+		</div>    
+    </div>    
+    <!-- Page Content End -->
+	
+   
+   <!-- Footer -->
+	<div class="footer fixed" style="padding-bottom:14px;z-index:9999 !important;">
+		<div class="container">
+            <div class='row'>
+             
+                <div class='col-6'>
+            <a href="https://maps.apple.com/?daddr=54.43565,-2.58886&dirflg=d" style="color:inherit">   
+            <button width='100%' style="width:100%;font-size:16px;text-align:center;padding:12px;font-weight:900;margin-bottom:0px;border-radius:10px;border:1px solid #ec5e1e;background-color:white;color:#ec5e1e;"><i class='fa-regular fa-location-arrow'></i> &nbsp; Directions </button></a>
+                </div>
+                
+                
+                <div class='col-6'>
+             <button width='100%' style="width:100%;font-size:16px;text-align:center;padding:12px;font-weight:900;margin-bottom:0px;border-radius:10px;background-color:#ec5e1e;color:white;border:0px" onclick='redirect();'><i class='fa-regular fa-person-hiking'></i> &nbsp; Start Route</button>
+                </div>
+            </div>
+	
+</div>
+	</div> 
+    <!-- Footer End -->
+
+<!--**********************************
+    Scripts
+***********************************-->
+<script src="jquery.js"></script>
+<script src="bootstrap.bundle.min.js"></script>
+<script src="dz.carousel.js"></script><!-- Swiper -->
+<script src="swiper-bundle.min.js"></script><!-- Swiper -->
+<script src="jquery.bootstrap-touchspin.min.js"></script><!-- Swiper -->
+<script src="settings.js"></script>
+<script>
+    $(".stepper").TouchSpin();
+</script>
+</body>
+</html>
