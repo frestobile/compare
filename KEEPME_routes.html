@@ -19,87 +19,78 @@
     <!-- Stylesheets -->
 	<link rel="stylesheet" href="./jquery.bootstrap-touchspin.min.css">
     <link rel="stylesheet" href="./swiper-bundle.min.css">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     
-  
     <style>
-
         .shimmer {
-        color: grey;
-        display:inline-block;
-        -webkit-mask:linear-gradient(-60deg,#000 30%,#0005,#000 70%) right/300% 100%;
-        background-repeat: no-repeat;
-        animation: shimmer 2.5s infinite;
-        font-size: 50px;
-        max-width:100%;
+            color: grey;
+            display:inline-block;
+            -webkit-mask:linear-gradient(-60deg,#000 30%,#0005,#000 70%) right/300% 100%;
+            background-repeat: no-repeat;
+            animation: shimmer 2.5s infinite;
+            font-size: 50px;
+            max-width:100%;
         }
 
         @keyframes shimmer {
-        100% {-webkit-mask-position:left}
+            100% {-webkit-mask-position:left}
+        }
+        .Light {background-color:#f2f2f2 !important}
+        .Dark {background-color:#191b1f !important}
+
+        ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: black !important;
+            opacity: 1; /* Firefox */
         }
 
-    </style>
-    
-	<style>
-  .Light {background-color:#f2f2f2 !important}
-    .Dark {background-color:#191b1f !important}
+        :-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: black !important;
+        }
 
-    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-color: black !important;
-opacity: 1; /* Firefox */
-}
+        ::-ms-input-placeholder { /* Microsoft Edge */
+        color: black !important;
+        }
+        .app_card {margin-top:40px;margin-bottom:40px;background-color:white;border-radius:20px;border-top-left-radius:0px;padding:10px;box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 2px, rgba(0, 0, 0, 0.23) 0px 2px 2px;}
 
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-color: black !important;
-}
-
-::-ms-input-placeholder { /* Microsoft Edge */
-color: black !important;
-}
-.app_card {margin-top:40px;margin-bottom:40px;background-color:white;border-radius:20px;border-top-left-radius:0px;padding:10px;box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 2px, rgba(0, 0, 0, 0.23) 0px 2px 2px;}
-
-    .theme-dark .app_card {margin-top:40px;margin-bottom:40px;background-color:#26282b;border-radius:20px;border-top-left-radius:0px;padding:10px;box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 2px, rgba(0, 0, 0, 0.23) 0px 2px 2px;}
+        .theme-dark .app_card {margin-top:40px;margin-bottom:40px;background-color:#26282b;border-radius:20px;border-top-left-radius:0px;padding:10px;box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 2px, rgba(0, 0, 0, 0.23) 0px 2px 2px;}
 
         
-lc-tsy9bt {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0px;
-    height: 80%;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
-    overflow: hidden;
-    isolation: isolate;
-    border-radius: 8px;
-    background: rgb(248, 248, 248);
-    margin-top: 140px;
-}
-iframe {
-    top: 50px !important;
-        height: 82vh !important;
-}
-#chat-widget-container {
-    z-index:1 !important;
-    }
-    .appear-done{
-        display:none !importsnt;
-    }
-    #top-bar{
-                display:none !importsnt;
-    }
-    .lc-1b9ddl8 {
-        color:orange;
-    }
-        body {
-  overflow: scroll; /* Hide scrollbars */
-}
-</style>
-
-
+        lc-tsy9bt {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0px;
+            height: 80%;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
+            overflow: hidden;
+            isolation: isolate;
+            border-radius: 8px;
+            background: rgb(248, 248, 248);
+            margin-top: 140px;
+        }
+        iframe {
+            top: 50px !important;
+                height: 82vh !important;
+        }
+        #chat-widget-container {
+            z-index:1 !important;
+            }
+            .appear-done{
+                display:none !important;
+            }
+            #top-bar{
+                        display:none !important;
+            }
+            .lc-1b9ddl8 {
+                color:orange;
+            }
+                body {
+        overflow: scroll; /* Hide scrollbars */
+        }
+    </style>
 </head>   
 <body class="bg-white " id='myDIV' className='body'>
 <div class="page-wraper">
-    
     <!-- Header -->
 	<header class="header transparent">
 		<div class="main-bar">
@@ -107,7 +98,6 @@ iframe {
 			</div>
 		</div>
 	</header>
-   
     <style>
         .demo-wrap {
             overflow: hidden;
@@ -132,157 +122,131 @@ iframe {
 
     </style>
    
-    <div class="demo-wrap" style="background-image:url(https://www.beckythetraveller.com/wp-content/uploads/2019/04/2019-03-31-Blencathra-Lake-District-Halls-Fell-Sharp-Edge-DSC_3716-1200x800.jpg);background-size:cover;background-repeat: no-repeat">
-<div class="demo-bg">
-        <div class="demo-content"><br>
-            <h1 style="color:white">Let's <span id="changeText">Walk</span>...</h1>
-            <p style="color:white;font-size:16px;margin-bottom:30px">Find routes to suit you </p>
-           
-            
-            <div class="fixme" style="margin-top:-10px;display:flex; justify-content:center;background: transparent;padding-left: 0px;padding-right: 0px;width:100%">
-                              
-                    
-
+    <div class="demo-wrap" style="background-image:url(./assets/images/header-bg.jpg);background-size:cover;background-repeat: no-repeat">
+        <div class="demo-bg">
+            <div class="demo-content"><br>
+                <h1 style="color:white">Let's <span id="changeText">Walk</span>...</h1>
+                <p style="color:white;font-size:16px;margin-bottom:30px">Find routes to suit you </p>
+                <div class="fixme" style="margin-top:-10px;display:flex; justify-content:center;background: transparent;padding-left: 0px;padding-right: 0px;width:100%"></div>
             </div>
- 
-            
-            
         </div>
     </div>
-    </div>
-    
-    
-    
-    
-    
-    
+
     <script>
-if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
 
-var fixmeTop = $('.fixme').offset().top;
+            var fixmeTop = $('.fixme').offset().top;
+            $(window).scroll(function() {
 
+                var currentScroll = $(window).scrollTop();
+                var opacity2 =1;
+                
+                opacity2 = 1 - currentScroll / fixmeTop;
+        
+                if (opacity2 < 0) {
+                    opacity2 = 0;
+                }           
+                $('.header-background').css({
+                    opacity: opacity2
+                });
+            
+                if (currentScroll >= fixmeTop) {
+                    $('.fixme').css({
+                    position: 'fixed',
+                    top: '0',
+                    width: '100%',
+                    left: '0',
+                        zIndex: '999999999',
+                        background: '#191b1f',
+                        paddingLeft:"15px",
+                        paddingRight:"15px",
+                        paddingTop:"60px",
+                    });
+            
+                    $('.searchbar').css({
+                        width:'100%'
+                    })
+            
+                    $('#vir-searchbar').css({
+                        display: 'block'
+                    });
+            
+                } else {
+                    $('.fixme').css({
+                        position: 'static',
+                        background: 'transparent',
+                        display:'flex',
+                        justifyContent:'center',
+                            paddingLeft:"0px",
+                        paddingRight:"0px",
+                        paddingTop:"0px",
+                    });
+            
+                    $('.searchbar').css({
+                        width:'110%'
+                    })
+                    $('#vir-searchbar').css({
+                        display: 'none'
+                    })
+                }
+            });
+        } else {
+            
+            var fixmeTop = $('.fixme').offset().top;
+            $(window).scroll(function() {
 
-$(window).scroll(function() {
+                var currentScroll = $(window).scrollTop();
+                var opacity2 =1;
+                
+                opacity2 = 1 - currentScroll / fixmeTop;
+        
+                if (opacity2 < 0) {
+                    opacity2 = 0;
+                }           
+                $('.header-background').css({
+                    opacity: opacity2
+                });
+            
+                if (currentScroll >= fixmeTop) {
+                    $('.fixme').css({
+                        position: 'fixed',
+                        top: '0',
+                        left: '0',
+                        zIndex: '999999999',
+                        background: 'white',
+                        paddingLeft:"15px",
+                        paddingRight:"15px",
+                        paddingTop:"60px",
+                    });
+                
+                    $('.searchbar').css({
+                        width:'100%'
+                    })
+                
+                    $('#vir-searchbar').css({
+                        display: 'block'
+                    });
+                } else {
+                    $('.fixme').css({
+                        position: 'static',
+                        background: 'transparent',
+                        display:'flex',
+                        justifyContent:'center',
+                            paddingLeft:"0px",
+                        paddingRight:"0px",
+                    });
+            
+                    $('.searchbar').css({
+                        width:'110%'
+                    })
+                    $('#vir-searchbar').css({
+                        display: 'none'
+                    })
+                }
+            });
+        }
+    </script>  
 
-    var currentScroll = $(window).scrollTop();
-    var opacity2 =1;
-       
-    opacity2 = 1 - currentScroll / fixmeTop;
-  
-  if (opacity2 < 0) {
-      opacity2 = 0;
-  }           
-    $('.header-background').css({
-            opacity: opacity2
-        });
-    
-if (currentScroll >= fixmeTop) {
-$('.fixme').css({
-position: 'fixed',
-top: '0',
-width: '100%',
-left: '0',
-    zIndex: '999999999',
-    background: '#191b1f',
-    paddingLeft:"15px",
-    paddingRight:"15px",
-    paddingTop:"60px",
-});
-    
-    $('.searchbar').css({
-        width:'100%'
-    })
-    
-$('#vir-searchbar').css({
-    display: 'block'
-});
-    
-    
-} else {
-$('.fixme').css({
-position: 'static',
-    background: 'transparent',
-    display:'flex',
-    justifyContent:'center',
-        paddingLeft:"0px",
-    paddingRight:"0px",
-     paddingTop:"0px",
-});
-    
-    $('.searchbar').css({
-        width:'110%'
-    })
-$('#vir-searchbar').css({
-    display: 'none'
-})
-}
-});
-}
-    
-    else {
-    
-var fixmeTop = $('.fixme').offset().top;
-
-
-$(window).scroll(function() {
-
-    var currentScroll = $(window).scrollTop();
-    var opacity2 =1;
-       
-    opacity2 = 1 - currentScroll / fixmeTop;
-  
-  if (opacity2 < 0) {
-      opacity2 = 0;
-  }           
-    $('.header-background').css({
-            opacity: opacity2
-        });
-    
-if (currentScroll >= fixmeTop) {
-$('.fixme').css({
-position: 'fixed',
-top: '0',
-left: '0',
-    zIndex: '999999999',
-    background: 'white',
-    paddingLeft:"15px",
-    paddingRight:"15px",
-    paddingTop:"60px",
-});
-    
-    $('.searchbar').css({
-        width:'100%'
-    })
-    
-$('#vir-searchbar').css({
-    display: 'block'
-});
-    
-    
-} else {
-$('.fixme').css({
-position: 'static',
-    background: 'transparent',
-    display:'flex',
-    justifyContent:'center',
-        paddingLeft:"0px",
-    paddingRight:"0px",
-});
-    
-    $('.searchbar').css({
-        width:'110%'
-    })
-$('#vir-searchbar').css({
-    display: 'none'
-})
-}
-});
-    
-}
-</script>  
-
-    
-    
     <script>
         var text = ["Hike", "Ramble", "Run", "Cycle", "Adventure", "Explore", "Walk", ];
         var counter = 0;
@@ -299,48 +263,11 @@ $('#vir-searchbar').css({
         }
     </script>
    
-  
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-  
-    
-    
-    
-    
-    
-  
     <!-- Page Content -->
     <div class="page-content">
         <div class="content-inner pt-0">
 			<div class="container fb" style="padding:10px !important;padding-right:1px !important;padding-top:18px">
-
                 <div>
-                    
-                    
-                    
-                    
-                    
-
                     <style>
                         .recomended-list {
                             height: 120px;
@@ -349,198 +276,117 @@ $('#vir-searchbar').css({
                         .recomended-list .image-box img {
                             height:80px;
                         }
-                    </style>
-
-                  
-<style>
-    .filter{
-font-family: Manrope,Arial,sans-serif;
-font-weight: 400;
-color: #000;
-font-size: 13px;
-border: none;
-border-radius: 24px;
-background-color: #fff;
-padding: 10px;
-cursor: pointer;
-white-space: nowrap;
-margin: 0px 10px 0px 0px !important;
-}
-    
-
-.filterActive{
-font-family: Manrope,Arial,sans-serif;
-font-weight: 400;
-color: #fff;
-font-size: 13px;
-border: none;
-border-radius: 24px;
-background-color: rgb(237, 95, 30);
-padding: 10px;
-cursor: pointer;
-white-space: nowrap;
-margin: 0px 10px 0px 0px !important;
-}
-</style>   
-                      <div class="swiper-wrapper" style="overflow:scroll">
-
-                     
-                    </div>
-<br>
-
-
-
-
-    
-    <div id='nearestMe' style="margin-top:0px">
                     
-                    
-                    
-    <!-- LOOP HERE -->
-        
- <input class="globalInputSearch form-control" type="text" placeholder="Search Routes..."><br>
+                        .filter{
+                            font-family: Manrope,Arial,sans-serif;
+                            font-weight: 400;
+                            color: #000;
+                            font-size: 13px;
+                            border: none;
+                            border-radius: 24px;
+                            background-color: #fff;
+                            padding: 10px;
+                            cursor: pointer;
+                            white-space: nowrap;
+                            margin: 0px 10px 0px 0px !important;
+                        }
+                        .filterActive{
+                            font-family: Manrope,Arial,sans-serif;
+                            font-weight: 400;
+                            color: #fff;
+                            font-size: 13px;
+                            border: none;
+                            border-radius: 24px;
+                            background-color: rgb(237, 95, 30);
+                            padding: 10px;
+                            cursor: pointer;
+                            white-space: nowrap;
+                            margin: 0px 10px 0px 0px !important;
+                        }
+                    </style>   
+                    <div class="swiper-wrapper" style="overflow:scroll"></div>
+                    <br>
+
+                    <div id='nearestMe' style="margin-top:0px">
+                    <!-- LOOP HERE -->
+                    <input class="globalInputSearch form-control" type="text" placeholder="Search Routes..."><br>
    
-<script>
-$('.globalSearchResultNoFoundFeedback').hide()    
-$(".globalInputSearch").keyup(function() {
+                    <script>
+                        $('.globalSearchResultNoFoundFeedback').hide()    
+                        $(".globalInputSearch").keyup(function() {
 
-// Retrieve the input field text and reset the count to zero
-var filter = $(this).val(),
-count = 0;
-
-
-// Loop through the comment list
-$('.globalTargetList li').each(function() {
-// If the list item does not contain the text phrase fade it out
-
-if ($(this).text().search(new RegExp(filter, "i")) < 0) {
-$(this).hide(); // MY CHANGE
-if (count == 0) {
-$('.globalSearchResultNoFoundFeedback').show()
-} else {
-$('.globalSearchResultNoFoundFeedback').hide()
-}
-// Show the list item if the phrase matches and increase the count by 1
-} else {
-$(this).show(); // MY CHANGE
-count++;
-
-}
-
-});
-
-});
-
-</script>
-
-        <ul class="globalTargetList">
-
-        
-<script>   
-   $.ajax({
-    url : "cumbria.json",
-    type : "GET", // whichever you like
-    contentType:"application/json",
-    success : function(list)
-    {           
-        
-
-        list.forEach(function(obj, index) {
-
-            var divCol  = "<li><a href=beta-route.html?ID=" + obj.id + " style='color:black'> <div id='myDIV' class='row'  style='margin-left:-5px;margin-top:0px;margin-bottom:18px;width:100%'> <div class='col-12 col-sm-12 col-md-4 col-lg-4 mb-3'> <div style='border-radius:18px;border-top-left-radius:0px;height:180px !important;background-image:url(WalkingRoutes.png);background-size:cover;background-position:center center;background-repeat:no-repeat'/></div>";
-        var divWell = "<div class='well'>";
-        var divClose= "</div>";
-            
-            var title     = "<div class='col-12 col-sm-12 col-md-8 col-lg-8'><div class='off' style='font-size:20px;font-weight: 700;margin-top:8px'><span>"      + obj.name    + "</h5>";
-            var body = "</span> <div class='row' style='margin-top:-10px'> <div class='col-3 col-md-6' style='margin-left:0px;margin-top:10px;font-size:12px;font-weight:400'><img src='gauge.png' style='height:15px;margin-top:0px'> " + obj.difficulty + " </div> <div class='col-3 col-md-6' style='margin-left:0px;margin-top:10px;font-size:12px;font-weight:400'><img src='route.png' style='height:15px;margin-top:-5px'> " + obj.distance + " km </div> <div class='col-4 col-md-6' style='margin-left:-10px;margin-top:10px;font-size:12px;font-weight:400'><img src='mapmarker.png' style='height:15px;margin-top:-5px'>" + obj.routeType + " </div></div></a></li>";
-           
-            var div = divCol    +
-                        divWell     +
-                            title       +
-                            body       +
-                        divClose +
-                      divClose;
-
-            $('#results').append(div); // insert the div you've just created
-
-        })
-    }
-});
-</script>
-
-        <div id='results'></div>
-        
-
-        </ul>
-        
-        
-  <!-- feedback -->
-  <div class="globalSearchResultNoFoundFeedback" aria-live="polite"> Sorry, no routes have been found</div>
-
-<script>
-$.getJSON('cumbria.json', function(data) {
-$.each(data, function(index) {
-//console.log(data[index].difficulty);
-});
-});
+                        // Retrieve the input field text and reset the count to zero
+                        var filter = $(this).val(),
+                        count = 0;
 
 
-</script>
-        <!--
-<div class="row" style="margin-left:-5px;margin-top:0px;margin-bottom:18px;width:100%" onclick="location.href='beta-route-new.php?ID=507&amp;url=Rand=FL6MJCxGnj&amp;keyword=&amp;suitability=&amp;difficulty=&amp;maxMiles=&amp;attraction=&amp;sort=&amp;routeType=&amp;minDistance=&amp;maxDistance=&amp;Lat=53.8039027&amp;Long=-1.8947301'">
+                        // Loop through the comment list
+                        $('.globalTargetList li').each(function() {
+                        // If the list item does not contain the text phrase fade it out
 
+                        if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+                        $(this).hide(); // MY CHANGE
+                        if (count == 0) {
+                        $('.globalSearchResultNoFoundFeedback').show()
+                        } else {
+                        $('.globalSearchResultNoFoundFeedback').hide()
+                        }
+                        // Show the list item if the phrase matches and increase the count by 1
+                        } else {
+                        $(this).show(); // MY CHANGE
+                        count++;
 
-<div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-3">
+                        }
 
+                        });
 
+                        });
 
-<div style="border-radius:18px;border-top-left-radius:0px;height:180px !important;background-image:url(uploads/route_pics/awaiting_pics/1.png);background-size:cover;background-position:center center;background-repeat:no-repeat"></div>
+                    </script>
 
-</div>
+                    <ul class="globalTargetList">
+                        <script>   
+                            $.ajax({
+                                url : "cumbria.json",
+                                type : "GET", // whichever you like
+                                contentType:"application/json",
+                                success : function(list)
+                                {   
+                                    list.forEach(function(obj, index) {
 
+                                        var divCol  = "<li><a href=beta-route.html?ID=" + obj.id + " style='color:black'> <div id='myDIV' class='row'  style='margin-left:-5px;margin-top:0px;margin-bottom:18px;width:100%'> <div class='col-12 col-sm-12 col-md-4 col-lg-4 mb-3'> <div style='border-radius:18px;border-top-left-radius:0px;height:180px !important;background-image:url(WalkingRoutes.png);background-size:cover;background-position:center center;background-repeat:no-repeat'/></div>";
+                                        var divWell = "<div class='well'>";
+                                        var divClose= "</div>";
+                                        
+                                        var title     = "<div class='col-12 col-sm-12 col-md-8 col-lg-8'><div class='off' style='font-size:20px;font-weight: 700;margin-top:8px'><span>"      + obj.name    + "</h5>";
+                                        var body = "</span> <div class='row' style='margin-top:-10px'> <div class='col-3 col-md-6' style='margin-left:0px;margin-top:10px;font-size:12px;font-weight:400'><img src='gauge.png' style='height:15px;margin-top:0px'> " + obj.difficulty + " </div> <div class='col-3 col-md-6' style='margin-left:0px;margin-top:10px;font-size:12px;font-weight:400'><img src='route.png' style='height:15px;margin-top:-5px'> " + obj.distance + " km </div> <div class='col-4 col-md-6' style='margin-left:-10px;margin-top:10px;font-size:12px;font-weight:400'><img src='mapmarker.png' style='height:15px;margin-top:-5px'>" + obj.routeType + " </div></div></a></li>";
+                                    
+                                        var div = divCol + divWell + title + body + divClose + divClose;
+                                        $('#results').append(div); // insert the div you've just created
 
+                                    })
+                                }
+                            });
+                        </script>
 
-<div class="col-12 col-sm-12 col-md-8 col-lg-8">
-<div class="off" style="font-size:20px;font-weight: 700;margin-top:-8px"><span>
-Tebay Fell Circular                                </span>
-<span class="badge badge-danger">Hard</span>
-</div>
+                        <div id='results'></div>
+                    </ul>
+                    <!-- feedback -->
+                    <div class="globalSearchResultNoFoundFeedback" aria-live="polite"> Sorry, no routes have been found</div>
 
-<div class="row" style="margin-top:-10px">
-
-
-
-<div class="col-5 col-md-6" style="margin-top:10px;font-size:12px;color:"><i class="fa fa-location-arrow" aria-hidden="true"></i> 52 miles from you  </div>
-
-
-<div class="col-3 col-md-6" style="margin-left:-20px;margin-top:10px;font-size:12px;color:"><i class="fa fa-route" aria-hidden="true"></i> 15.4km </div>
-<div class="col-4 col-md-6" style="margin-left:-10px;margin-top:10px;font-size:12px;color:"><i class="fa fa-map-marker" aria-hidden="true"></i> Circular</div>
-
-</div>
-</div>
-
-
-
-
-</div>
-        -->
-        
-                    
+                    <script>
+                        $.getJSON('cumbria.json', function(data) {
+                            $.each(data, function(index) {
+                            //console.log(data[index].difficulty);
+                            });
+                        });
+                    </script>
+                </div>
+                <br>
+			</div>
+        </div>    
     </div>
-    
-    
-    <br>
-
-
-                    
-                  
-                    
-        
-				</div>
-			</div>    
-		</div>
-        
-    </div>    
+</div>    
   	
     
 </div>  
@@ -552,8 +398,8 @@ Tebay Fell Circular                                </span>
 <script src="swiper-bundle.min.js"></script><!-- Swiper -->
 <script src="dz.carousel.js"></script><!-- Swiper -->
 <script src="./jquery.bootstrap-touchspin.min.js"></script><!-- Swiper -->
-<script src="settings.js"></script>
-<script src="./custom.js"></script>
+<script src="./assets/js/settings.js"></script>
+<script src="./assets/js/custom.js"></script>
 <script src="./index.js" defer></script>
 <script type="text/javascript" src="./jquery.lazy.min.js"></script>
 <script>
